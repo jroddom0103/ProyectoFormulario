@@ -4,6 +4,9 @@ import com.es.proyectoformulario.ui.frames.FrameLogin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class PanelOpciones extends JPanel {
 
@@ -11,6 +14,37 @@ public class PanelOpciones extends JPanel {
 
     private JButton botonAlta, botonBaja, botonModificar, botonConsultar;
 
+    private MouseListener listenerMouseAlta = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            System.out.println("Alta pulsado");
+            cargarPanelAlta();
+        }
+    };
+
+    private MouseListener listenerMouseBaja = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            System.out.println("Baja pulsado");
+            cargarPanelLogin();
+        }
+    };
+
+    private MouseListener listenerMouseModificar = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            System.out.println("Alta pulsado");
+            cargarPanelAlta();
+        }
+    };
+
+    private MouseListener listenerMouseConsultar = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            System.out.println("Alta pulsado");
+            cargarPanelAlta();
+        }
+    };
 
     public PanelOpciones(FrameLogin framePadre) {
 
@@ -34,10 +68,42 @@ public class PanelOpciones extends JPanel {
         this.botonModificar.setBounds(200, 300, 130, 32);
         this.botonConsultar.setBounds(200, 400, 130, 32);
 
+        botonAlta.addMouseListener(listenerMouseAlta);
+
+
         this.add(botonAlta);
         this.add(botonBaja);
         this.add(botonModificar);
         this.add(botonConsultar);
+
+
+    }
+
+    private void cargarPanelAlta() {
+        // ELIMINAMOS THIS PanelLogin
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
+        PanelAlta panelAlta = new PanelAlta(framePadre);
+        framePadre.add(panelAlta);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
+
+    }
+
+    private void cargarPanelLogin() {
+        // ELIMINAMOS THIS PanelLogin
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
+        PanelLogin panelLogin = new PanelLogin(framePadre);
+        framePadre.add(panelLogin);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
 
     }
 }
