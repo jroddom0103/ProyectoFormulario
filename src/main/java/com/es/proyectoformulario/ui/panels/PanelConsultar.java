@@ -1,5 +1,6 @@
 package com.es.proyectoformulario.ui.panels;
 
+import com.es.proyectoformulario.model.User;
 import com.es.proyectoformulario.services.impl.GestionFicheroUser;
 import com.es.proyectoformulario.services.impl.ServiceLogger;
 import com.es.proyectoformulario.services.impl.ServiceUser;
@@ -25,22 +26,14 @@ public class PanelConsultar extends JPanel {
     private JButton bConsultar;
     private ServiceUser serviceUser = new ServiceUser();
     private ServiceLogger serviceLogger = new ServiceLogger();
-    private GestionFicheroUser ficheroUser = new GestionFicheroUser();
     private String ruta = "src/main/resources/users/users.txt";
 
 
     private MouseListener listenerMouseConsultar = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-            for (int i=0;i<ficheroUser.leerFichero(ruta).size();i++){
-                if (ficheroUser.leerFichero(ruta).get(i).getId().equals(user.getText())){
-                    System.out.println("ID: "+user.getText());
-                    System.out.println("Nombre: "+ficheroUser.leerFichero(ruta).get(i).getName());
-                    System.out.println("Password: "+ficheroUser.leerFichero(ruta).get(i).getPass());
-                    System.out.println("Es Admin: "+ficheroUser.leerFichero(ruta).get(i).isAdmin());
-
-                }
-            }
+            User user1 = serviceUser.obtenerUsuario(user.getText());
+            
 
         }
     };

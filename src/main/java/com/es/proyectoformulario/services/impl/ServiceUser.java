@@ -21,6 +21,15 @@ public class ServiceUser {
         this.logger = new ServiceLogger();
     }
 
+    public User obtenerUsuario (String idUsuario){
+        for (int i=0;i<users.size();i++){
+            if (users.get(i).getId().equals(idUsuario)){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+
 
     public boolean checkUser(String idUser, String password) {
         for (int i = 0; i < this.users.size(); i++) {
