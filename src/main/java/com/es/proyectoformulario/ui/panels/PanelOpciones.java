@@ -26,7 +26,7 @@ public class PanelOpciones extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             System.out.println("Baja pulsado");
-            cargarPanelLogin();
+            cargarPanelBaja();
         }
     };
 
@@ -34,7 +34,7 @@ public class PanelOpciones extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             System.out.println("Alta pulsado");
-            cargarPanelAlta();
+            cargarPanelModificar();
         }
     };
 
@@ -42,7 +42,7 @@ public class PanelOpciones extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             System.out.println("Alta pulsado");
-            cargarPanelAlta();
+            cargarPanelConsultar();
         }
     };
 
@@ -69,13 +69,14 @@ public class PanelOpciones extends JPanel {
         this.botonConsultar.setBounds(200, 400, 130, 32);
 
         botonAlta.addMouseListener(listenerMouseAlta);
-
+        botonBaja.addMouseListener(listenerMouseBaja);
+        botonConsultar.addMouseListener(listenerMouseConsultar);
+        botonModificar.addMouseListener(listenerMouseModificar);
 
         this.add(botonAlta);
         this.add(botonBaja);
         this.add(botonModificar);
         this.add(botonConsultar);
-
 
     }
 
@@ -93,6 +94,20 @@ public class PanelOpciones extends JPanel {
 
     }
 
+    private void cargarPanelBaja() {
+        // ELIMINAMOS THIS PanelLogin
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
+        PanelBaja panelBaja = new PanelBaja(framePadre);
+        framePadre.add(panelBaja);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
+
+    }
+
     private void cargarPanelLogin() {
         // ELIMINAMOS THIS PanelLogin
         framePadre.remove(this);
@@ -100,6 +115,34 @@ public class PanelOpciones extends JPanel {
         // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
         PanelLogin panelLogin = new PanelLogin(framePadre);
         framePadre.add(panelLogin);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
+
+    }
+
+    private void cargarPanelConsultar() {
+        // ELIMINAMOS THIS PanelLogin
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
+        PanelConsultar panelConsultar = new PanelConsultar(framePadre);
+        framePadre.add(panelConsultar);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
+
+    }
+
+    private void cargarPanelModificar() {
+        // ELIMINAMOS THIS PanelLogin
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
+        PanelModificar panelModificar = new PanelModificar(framePadre);
+        framePadre.add(panelModificar);
 
         // ULTIMO: REPINTAR EL FRAME
         framePadre.repaint();

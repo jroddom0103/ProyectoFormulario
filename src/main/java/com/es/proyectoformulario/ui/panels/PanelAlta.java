@@ -1,6 +1,7 @@
 package com.es.proyectoformulario.ui.panels;
 
 import com.es.proyectoformulario.model.User;
+import com.es.proyectoformulario.services.impl.ServiceLogger;
 import com.es.proyectoformulario.services.impl.ServiceUser;
 import com.es.proyectoformulario.ui.frames.FrameLogin;
 
@@ -23,7 +24,8 @@ public class PanelAlta extends JPanel {
     private JComboBox isAdmin;
     private JButton bEnviar;
     private JButton bLogin;
-    private ServiceUser serviceUser;
+    private ServiceUser serviceUser = new ServiceUser();
+    private ServiceLogger serviceLogger = new ServiceLogger();
 
 
     private MouseListener listenerMouseEnviar = new MouseAdapter() {
@@ -36,7 +38,7 @@ public class PanelAlta extends JPanel {
             String isAdminString;
             boolean administrador;
             userString=user.getText();
-            nameUserString=user.getText();
+            nameUserString= nameUser.getName();
             passString=pass.getText();
             isAdminString=(String)isAdmin.getSelectedItem();
 
@@ -47,6 +49,7 @@ public class PanelAlta extends JPanel {
             }
             User usuario = new User(userString,nameUserString,passString,administrador);
             serviceUser.anadirFicheroUsers(usuario);
+            serviceLogger.registrarLog(userString,"Alta","OK");
             System.out.println("Añadido el usuario.");
         }
     };
@@ -62,7 +65,6 @@ public class PanelAlta extends JPanel {
     public PanelAlta(FrameLogin framePadre) {
 
         this.framePadre = framePadre;
-        this.serviceUser = new ServiceUser();
 
         this.setBackground(new Color(0xDFDCDC));
         this.setLayout(null);
@@ -119,6 +121,7 @@ public class PanelAlta extends JPanel {
         bEnviar.setBorder(new LineBorder(new Color(0,0,0), 2));
         bEnviar.addMouseListener(listenerMouseEnviar);
         this.add(bEnviar);
+
 
         bLogin = new JButton("Login");
         bLogin.setBounds(300,400,100,50);
