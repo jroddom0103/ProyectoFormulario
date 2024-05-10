@@ -1,7 +1,6 @@
 package com.es.proyectoformulario.ui.panels;
 
 import com.es.proyectoformulario.model.User;
-import com.es.proyectoformulario.services.impl.GestionFicheroUser;
 import com.es.proyectoformulario.services.impl.ServiceLogger;
 import com.es.proyectoformulario.services.impl.ServiceUser;
 import com.es.proyectoformulario.ui.frames.FrameLogin;
@@ -33,7 +32,9 @@ public class PanelConsultar extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             User user1 = serviceUser.obtenerUsuario(user.getText());
-            
+            user1.toString();
+
+
 
         }
     };
@@ -65,9 +66,10 @@ public class PanelConsultar extends JPanel {
         user.setBounds(250, 168, 172, 20);
         this.add(user);
 
-        JLabel informacion = new JLabel();
-        informacion.setBounds(200,190,200,200);
-        this.add(informacion);
+
+        JTextArea areaInformacion = new JTextArea("");
+        areaInformacion.setBounds(220,300,100,100);
+        this.add(areaInformacion);
 
         bAtras = new JButton("Atras");
         bAtras.setBounds(40, 500, 100, 50);
